@@ -1,0 +1,19 @@
+# Netlify 設定 — HTML自動処理を無効化
+# (HTML minifier がインラインCSSのURLを壊すことがあるため)
+
+[build.processing]
+  skip_processing = true
+
+[build.processing.html]
+  pretty_urls = false
+
+[build.processing.css]
+  bundle = false
+  minify = false
+
+[build.processing.js]
+  bundle = false
+  minify = false
+
+[build.processing.images]
+  compress = false
