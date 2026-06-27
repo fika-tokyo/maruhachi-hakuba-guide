@@ -632,10 +632,7 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 // 白馬旅籠丸八 HATAGO MARUHACHI: 〒399-9301 長野県北安曇郡白馬村北城10816
-const UNPLAN = [36.7138, 137.8686  { name: '白馬ノルウェービレッジ', nameEn: 'Hakuba Norway Village', icon: '💻', cat: 'spot', km: 2.14, area: '白馬駅周辺', lat: 36.6948, lon: 137.8597, desc: '無料コワーキング施設。電源・Wi-Fi・ディスプレイ完備。1998長野五輪のノルウェーゲストハウスを活用した北欧空間。カフェUtflykt併設で自家焙煎コーヒーも。', hp: 'https://hnv.jp/', bike: true, dog: false, cowork: true, hours: '平日 9:00〜17:00 / 土日 11:00〜17:00', tip: '静かな作業環境◎。カフェ併設なのでランチ/休憩も完結。' },
-  { name: 'Hakuba Share（白馬シェア）', nameEn: 'Hakuba Share', icon: '💻', cat: 'spot', km: 2.03, area: '白馬駅周辺', lat: 36.6963, lon: 137.8617, desc: '白馬駅徒歩5分のMORIビル1階、コワーキング＆シェアオフィス。ドロップイン可。', bike: true, dog: false, cowork: true, hours: '11:00〜19:00（水・木定休）' },
-];
-
+const UNPLAN = [36.7138, 137.8686];
 // Data sourced from Notion master DB (実位置と距離)
 const spots = [
   { name: '白馬大橋', icon: '🌉', cat: 'spot', km: 0.42, area: '八方', lat: 36.7113, lon: 137.865, desc: '橋の上は白馬三山の展望スポット。', hp: 'https://www.vill.hakuba.nagano.jp/spots/hakuba-oohashi-bridge/', bike: true, dog: true, hours: '24時間', tip: '早朝・夕方は人が少なく撮影しやすい。' },
@@ -728,6 +725,8 @@ const spots = [
   { name: 'UNITE COFFEE', icon: '☕', cat: 'cafe', km: 23.16, area: '大町', lat: 36.50571, lon: 137.85727, desc: '本格的自家焙煎珈琲のお店。', bike: false, dog: false, hours: '11:00～17:00（火水定休）', note: '※ 大町・車必須' },
   { name: 'ジェラートショップ 花彩', icon: '🍦', cat: 'cafe', km: 24.66, area: '大町', lat: 36.49382, lon: 137.83386, desc: '信州安曇野産の低温殺菌牛乳と旬の素材を使った本格派ジェラート。', hp: 'http://www.js-hanairo.com/', ig: '@hakubahanairo', bike: false, dog: false, hours: '10:00～17:00（水曜定休 ※夏期無休）', tip: 'アイスクリームよりも低脂肪でさっぱりした中にもコク。', note: '※ 大町・車必須' },
   { name: 'カフェえんとつ', icon: '🍕', cat: 'cafe', km: 24.84, area: '大町', lat: 36.49163, lon: 137.84007, desc: '北アルプスの田園風景を眺めながら信州野菜のパスタ＆ピザ。', hp: 'https://entotu.com/', ig: '@cafe_entotu', bike: false, dog: false, hours: '11:00～17:00（木・第1第3水定休）', note: '※ 大町・車必須' },
+{ name: '白馬ノルウェービレッジ', nameEn: 'Hakuba Norway Village', icon: '💻', cat: 'spot', km: 2.14, area: '白馬駅周辺', lat: 36.6948, lon: 137.8597, desc: '無料コワーキング施設。電源・Wi-Fi・ディスプレイ完備。1998長野五輪のノルウェーゲストハウスを活用した北欧空間。カフェUtflykt併設で自家焙煎コーヒーも。', hp: 'https://hnv.jp/', bike: true, dog: false, cowork: true, hours: '平日 9:00〜17:00 / 土日 11:00〜17:00', tip: '静かな作業環境◎。カフェ併設なのでランチ/休憩も完結。' },
+  { name: 'Hakuba Share（白馬シェア）', nameEn: 'Hakuba Share', icon: '💻', cat: 'spot', km: 2.03, area: '白馬駅周辺', lat: 36.6963, lon: 137.8617, desc: '白馬駅徒歩5分のMORIビル1階、コワーキング＆シェアオフィス。ドロップイン可。', bike: true, dog: false, cowork: true, hours: '11:00〜19:00（水・木定休）' },
 ];
 
 const grid = document.getElementById('spotsGrid');
