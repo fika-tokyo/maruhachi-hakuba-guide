@@ -7,7 +7,7 @@
 <meta name="description" content="白馬旅籠丸八 HATAGO MARUHACHI | 白馬岩岳の宿泊情報と白馬ローカルガイド。心と体を癒す、サステナブルなお宿。Welcome to 白馬旅籠丸八 HATAGO MARUHACHI.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Shippori+Mincho:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Shippori+Mincho:wght@400;500;600;700;800&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #eef1f5;
@@ -22,7 +22,7 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
   body {
-    font-family: 'Shippori Mincho', 'Yu Mincho', YuMincho, 'Hiragino Mincho ProN', serif;
+    font-family: 'Shippori Mincho', 'Noto Sans Thai', 'Yu Mincho', YuMincho, 'Hiragino Mincho ProN', serif;
     background: var(--bg);
     color: var(--ink);
     font-size: 14px;
@@ -30,7 +30,7 @@
     -webkit-font-smoothing: antialiased;
   }
   h1, h2, h3, h4 {
-    font-family: 'Cormorant Garamond', 'Shippori Mincho', 'Yu Mincho', serif;
+    font-family: 'Cormorant Garamond', 'Shippori Mincho', 'Noto Sans Thai', 'Yu Mincho', serif;
     font-weight: 700; letter-spacing: -.01em;
   }
   img { display: block; max-width: 100%; height: auto; }
@@ -228,8 +228,12 @@
     font-family: 'Cormorant Garamond', serif; font-weight: 700;
     color: var(--ink); font-size: 15px; letter-spacing: .02em;
   }
-  body.en .wifi-row .wifi-label.lang-jp { display: none; }
-  body:not(.en) .wifi-row .wifi-label.lang-en { display: none; }
+  body.en .wifi-row .wifi-label.lang-jp,
+  body.en .wifi-row .wifi-label.lang-th,
+  body.th .wifi-row .wifi-label.lang-jp,
+  body.th .wifi-row .wifi-label.lang-en { display: none; }
+  body:not(.en):not(.th) .wifi-row .wifi-label.lang-en,
+  body:not(.en):not(.th) .wifi-row .wifi-label.lang-th { display: none; }
   .contact-row {
     display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px;
   }
@@ -281,11 +285,17 @@
   }
 
   /* Language toggle */
-  .lang-en { display: none; }
-  body.en .lang-jp { display: none; }
+  .lang-en, .lang-th { display: none; }
+  body.en .lang-jp, body.en .lang-th { display: none; }
   body.en .lang-en { display: block; }
   body.en span.lang-en, body.en .inline.lang-en { display: inline; }
-  body.en h1.lang-jp, body.en h2.lang-jp, body.en h3.lang-jp, body.en p.lang-jp, body.en div.lang-jp { display: none; }
+  body.en h1.lang-jp, body.en h2.lang-jp, body.en h3.lang-jp, body.en p.lang-jp, body.en div.lang-jp,
+  body.en h1.lang-th, body.en h2.lang-th, body.en h3.lang-th, body.en p.lang-th, body.en div.lang-th { display: none; }
+  body.th .lang-jp, body.th .lang-en { display: none; }
+  body.th .lang-th { display: block; }
+  body.th span.lang-th, body.th .inline.lang-th { display: inline; }
+  body.th h1.lang-jp, body.th h2.lang-jp, body.th h3.lang-jp, body.th p.lang-jp, body.th div.lang-jp,
+  body.th h1.lang-en, body.th h2.lang-en, body.th h3.lang-en, body.th p.lang-en, body.th div.lang-en { display: none; }
 </style>
 </head>
 <body>
@@ -297,6 +307,8 @@
       <button data-lang="jp" class="active">JP</button>
       <span class="divider">/</span>
       <button data-lang="en">EN</button>
+      <span class="divider">/</span>
+      <button data-lang="th">TH</button>
     </div>
     <a href="https://hakubastay.jp/maru8/?tripla_booking_widget_open=search" target="_blank" class="book-btn">BOOK NOW</a>
   </div>
@@ -309,8 +321,10 @@
     <div class="hero-eyebrow">白馬旅籠丸八 HATAGO MARUHACHI</div>
     <h1 class="hero-title lang-jp">ようこそ、<br>白馬へ。</h1>
     <h1 class="hero-title lang-en">Welcome to<br>Hakuba.</h1>
+    <h1 class="hero-title lang-th">ยินดีต้อนรับสู่<br>ฮาคุบะ</h1>
     <p class="hero-sub lang-jp">白馬旅籠丸八 は、岩岳「せせらぎの里」新田にたたずむ古民家リゾート。江戸時代から守り継がれた古民家と、桜並木沿いの「離れ」で、愛犬とともに我が家のように寛げるお宿です。</p>
     <p class="hero-sub lang-en">Hatago Maruhachi is a renovated kominka (folk-house) retreat in Niida — the Iwatake "village of murmuring streams." Stay with your dog in heritage houses and detached suites along a cherry-tree lane, as relaxed as a second home.</p>
+    <p class="hero-sub lang-th">ฮาตาโกะ มารุฮาจิ คือรีสอร์ทบ้านโบราณสไตล์ญี่ปุ่น (โคมินกะ) ที่ตั้งอยู่ในหมู่บ้านนีอิดะ "หมู่บ้านแห่งลำธาร" บริเวณอิวาตาเกะ พักผ่อนกับสุนัขที่รักในบ้านโบราณและห้องพักส่วนตัวริมทางเดินซากุระ ราวกับเป็นบ้านหลังที่สองของคุณ</p>
   </div>
   <div class="scroll-cue">SCROLL</div>
 </div>
@@ -322,10 +336,13 @@
     <div class="section-eyebrow">01 — Your Stay</div>
     <h2 class="section-title lang-jp">宿泊のご案内</h2>
     <h2 class="section-title lang-en">Your Stay</h2>
+    <h2 class="section-title lang-th">ข้อมูลการเข้าพัก</h2>
     <p class="section-body lang-jp">チェックイン／アウト、Wi-Fi、アクセス、お部屋・アメニティ、ミネラルミスト岩盤浴やラウンジなど、旅籠丸八 での滞在に必要な情報をまとめています。</p>
     <p class="section-body lang-en">Everything you need for your stay — check-in/out, Wi-Fi, access, rooms, amenities, the mineral mist stone spa, lounge and more.</p>
+    <p class="section-body lang-th">ข้อมูลทั้งหมดที่จำเป็นสำหรับการเข้าพัก — เช็คอิน/เช็คเอาต์ Wi-Fi การเดินทาง ห้องพัก สิ่งอำนวยความสะดวก มิเนอรัลมิสต์สปาหิน เลานจ์ และอื่นๆ</p>
     <a href="stay.html" class="section-btn lang-jp">詳しく見る</a>
     <a href="stay-en.html" class="section-btn lang-en">Learn More</a>
+    <a href="stay-th.html" class="section-btn lang-th">ดูรายละเอียด</a>
   </div>
 </section>
 
@@ -336,10 +353,13 @@
     <div class="section-eyebrow">02 — Explore</div>
     <h2 class="section-title lang-jp">白馬を、楽しむ。</h2>
     <h2 class="section-title lang-en">Explore Hakuba.</h2>
+    <h2 class="section-title lang-th">สัมผัสฮาคุบะ</h2>
     <p class="section-body lang-jp">スポット、夏冬のアクティビティ、温泉、飲食、交通、E-bike まで。白馬を深く楽しむためのスタッフ厳選ローカルガイド。</p>
     <p class="section-body lang-en">Spots, summer & winter activities, onsen, food, transport and e-bikes — your local guide curated by our staff.</p>
+    <p class="section-body lang-th">สถานที่ท่องเที่ยว กิจกรรมฤดูร้อน/ฤดูหนาว ออนเซ็น ร้านอาหาร การเดินทาง และ E-bike — คู่มือท้องถิ่นที่คัดสรรโดยทีมงานของเรา</p>
     <a href="hakuba.html" class="section-btn lang-jp">ガイドを見る</a>
     <a href="hakuba-en.html" class="section-btn lang-en">Open Guide</a>
+    <a href="hakuba-th.html" class="section-btn lang-th">เปิดคู่มือ</a>
   </div>
 </section>
 
@@ -349,23 +369,26 @@
     <div class="quick-eyebrow">Quick Info</div>
     <h2 class="quick-title lang-jp">困ったときは</h2>
     <h2 class="quick-title lang-en">In case you need help</h2>
+    <h2 class="quick-title lang-th">เมื่อต้องการความช่วยเหลือ</h2>
 
     <div class="quick-grid">
       <div class="quick-item">
         <div class="quick-num">01 Wi-Fi</div>
         <h3 class="lang-jp">館内 Wi-Fi</h3>
         <h3 class="lang-en">House Wi-Fi</h3>
+        <h3 class="lang-th">Wi-Fi ภายในที่พัก</h3>
         <div class="wifi-box">
-          <div class="wifi-row"><span class="wifi-label lang-jp">壱番館</span><span class="wifi-label lang-en">No.1</span><span class="wifi-val" style="font-size:12px; letter-spacing:0">ID maruhachi-1st ／ PW maruhachi0001</span></div>
-          <div class="wifi-row"><span class="wifi-label lang-jp">弐番館</span><span class="wifi-label lang-en">No.2</span><span class="wifi-val" style="font-size:12px; letter-spacing:0">ID Maruhachi ／ PW maruhachi0003</span></div>
-          <div class="wifi-row"><span class="wifi-label lang-jp">参番館</span><span class="wifi-label lang-en">No.3</span><span class="wifi-val" style="font-size:12px; letter-spacing:0">ID maruhachi-3rd ／ PW maruhachi0007</span></div>
+          <div class="wifi-row"><span class="wifi-label lang-jp">壱番館</span><span class="wifi-label lang-en">No.1</span><span class="wifi-label lang-th">อาคาร 1</span><span class="wifi-val" style="font-size:12px; letter-spacing:0">ID maruhachi-1st ／ PW maruhachi0001</span></div>
+          <div class="wifi-row"><span class="wifi-label lang-jp">弐番館</span><span class="wifi-label lang-en">No.2</span><span class="wifi-label lang-th">อาคาร 2</span><span class="wifi-val" style="font-size:12px; letter-spacing:0">ID Maruhachi ／ PW maruhachi0003</span></div>
+          <div class="wifi-row"><span class="wifi-label lang-jp">参番館</span><span class="wifi-label lang-en">No.3</span><span class="wifi-label lang-th">อาคาร 3</span><span class="wifi-val" style="font-size:12px; letter-spacing:0">ID maruhachi-3rd ／ PW maruhachi0007</span></div>
         </div>
-        <p style="font-size:11px; color:var(--ink-muted); margin-top:8px"><span class="lang-jp">※ 左が ID（SSID）、右が パスワード。お部屋の館をお選びください。</span><span class="lang-en">※ Left = ID (SSID), right = password. Choose your building.</span></p>
+        <p style="font-size:11px; color:var(--ink-muted); margin-top:8px"><span class="lang-jp">※ 左が ID（SSID）、右が パスワード。お部屋の館をお選びください。</span><span class="lang-en">※ Left = ID (SSID), right = password. Choose your building.</span><span class="lang-th">※ ซ้าย = ID (SSID), ขวา = รหัสผ่าน กรุณาเลือกอาคารที่คุณเข้าพัก</span></p>
       </div>
       <div class="quick-item quick-item-call">
         <div class="quick-num">02 Front Desk</div>
         <h3 class="lang-jp">フロントへのご連絡</h3>
         <h3 class="lang-en">Contact Front Desk</h3>
+        <h3 class="lang-th">ติดต่อฟรอนต์เดสก์</h3>
         <a href="tel:05017211082" class="quick-tel">📞 050-1721-1082</a>
         <div class="contact-row">
           <a href="https://lin.ee/Y1mclmE" target="_blank" rel="noopener" class="contact-btn line">LINE</a>
@@ -374,13 +397,16 @@
         </div>
         <p class="contact-hours lang-jp">📱 受付時間：10:00〜19:00</p>
         <p class="contact-hours lang-en">📱 Hours: 10:00–19:00</p>
+        <p class="contact-hours lang-th">📱 เวลาทำการ: 10:00–19:00</p>
       </div>
       <div class="quick-item">
         <div class="quick-num">03 Emergency</div>
         <h3 class="lang-jp">緊急時 / Emergency</h3>
         <h3 class="lang-en">Emergency</h3>
+        <h3 class="lang-th">กรณีฉุกเฉิน</h3>
         <p class="lang-jp"><strong>🚑 119</strong> 救急車・火事<br><strong>🚓 110</strong> 警察</p>
         <p class="lang-en"><strong>🚑 119</strong> Ambulance & Fire<br><strong>🚓 110</strong> Police</p>
+        <p class="lang-th"><strong>🚑 119</strong> รถพยาบาล / เพลิงไหม้<br><strong>🚓 110</strong> ตำรวจ</p>
       </div>
     </div>
   </div>
@@ -429,7 +455,9 @@
     btn.addEventListener('click', () => {
       document.querySelectorAll('.lang-switch button').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      document.body.classList.toggle('en', btn.dataset.lang === 'en');
+      document.body.classList.remove('en', 'th');
+      if (btn.dataset.lang === 'en') document.body.classList.add('en');
+      else if (btn.dataset.lang === 'th') document.body.classList.add('th');
     });
   });
 </script>
