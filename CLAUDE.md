@@ -7,7 +7,7 @@
 
 ## 移行先
 
-- [`apps/hakuba/maruhachi-guide`](https://github.com/fika-tokyo/FikaHub/tree/main/apps/hakuba/maruhachi-guide)
+- [`apps/yamaai-crew/all-company/all/maruhachi-guide`](https://github.com/fika-tokyo/FikaHub/tree/main/apps/yamaai-crew/all-company/all/maruhachi-guide)
 
 ## このリポジトリを変更できる例外
 
