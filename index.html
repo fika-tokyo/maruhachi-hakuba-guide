@@ -1,466 +1,56 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Welcome | 白馬旅籠丸八 HATAGO MARUHACHI</title>
-<meta name="description" content="白馬旅籠丸八 HATAGO MARUHACHI | 白馬岩岳の宿泊情報と白馬ローカルガイド。心と体を癒す、サステナブルなお宿。Welcome to 白馬旅籠丸八 HATAGO MARUHACHI.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Shippori+Mincho:wght@400;500;600;700;800&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #eef1f5;
-    --surface: #ffffff;
-    --ink: #1b2a3a;
-    --ink-soft: #4a5b6d;
-    --ink-muted: #8c9aa8;
-    --line: #d8dee6;
-    --accent: #20406a;
-    --shadow: 0 6px 28px rgba(20,40,70,.09);
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-  body {
-    font-family: 'Shippori Mincho', 'Noto Sans Thai', 'Yu Mincho', YuMincho, 'Hiragino Mincho ProN', serif;
-    background: var(--bg);
-    color: var(--ink);
-    font-size: 14px;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
-  h1, h2, h3, h4 {
-    font-family: 'Cormorant Garamond', 'Shippori Mincho', 'Noto Sans Thai', 'Yu Mincho', serif;
-    font-weight: 700; letter-spacing: -.01em;
-  }
-  img { display: block; max-width: 100%; height: auto; }
-  a { color: inherit; text-decoration: none; }
-  button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
-
-  /* NAV */
-  .nav {
-    position: absolute; top: 0; left: 0; right: 0; z-index: 50;
-    padding: 24px 32px;
-    display: flex; align-items: center; justify-content: space-between;
-  }
-  .nav.scrolled {
-    position: fixed; background: rgba(255,255,255,.96);
-    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-    padding: 14px 32px; box-shadow: var(--shadow);
-    transition: all .3s;
-  }
-  .logo {
-    font-family: 'Cormorant Garamond', serif; font-weight: 700;
-    font-size: 14px; letter-spacing: .12em; color: white;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .nav.scrolled .logo { color: var(--ink); }
-  .nav-right { display: flex; align-items: center; gap: 18px; }
-  .lang-switch {
-    display: flex; gap: 2px; font-size: 12px;
-    color: rgba(255,255,255,.8); letter-spacing: .08em;
-  }
-  .nav.scrolled .lang-switch { color: var(--ink-soft); }
-  .lang-switch button { padding: 4px 8px; transition: opacity .2s; }
-  .lang-switch button:hover { opacity: 1; }
-  .lang-switch button.active { color: white; opacity: 1; font-weight: 600; }
-  .nav.scrolled .lang-switch button.active { color: var(--ink); }
-  .lang-switch button:not(.active) { opacity: .6; }
-  .lang-switch .divider { opacity: .4; padding: 0 2px; }
-  .book-btn {
-    background: white; color: var(--ink);
-    padding: 10px 22px; border-radius: 3px;
-    font-size: 12px; font-weight: 600; letter-spacing: .14em;
-    transition: all .2s;
-  }
-  .nav.scrolled .book-btn { background: var(--ink); color: white; }
-  .book-btn:hover { transform: translateY(-1px); }
-
-  /* HERO */
-  .hero {
-    position: relative; height: 100vh; min-height: 600px;
-    overflow: hidden;
-  }
-  .hero-bg {
-    position: absolute; inset: 0;
-    background:
-      linear-gradient(180deg, rgba(0,0,0,.1) 0%, rgba(0,0,0,.4) 100%),
-      url('images/hero-welcome.jpg') center/cover;
-  }
-  .hero-content {
-    position: absolute; bottom: 0; left: 0; right: 0;
-    padding: 0 32px 80px; color: white;
-    max-width: 1280px; margin: 0 auto;
-  }
-  .hero-eyebrow {
-    font-size: 11px; letter-spacing: .3em; text-transform: uppercase;
-    opacity: .9; margin-bottom: 18px; font-weight: 500;
-  }
-  .hero-title {
-    font-size: clamp(40px, 7vw, 92px); line-height: 1.0; font-weight: 700;
-    letter-spacing: -.02em; margin-bottom: 20px; max-width: 800px;
-  }
-  .hero-sub {
-    font-size: clamp(14px, 1.6vw, 17px); opacity: .9; max-width: 540px;
-    font-weight: 400; line-height: 1.6;
-  }
-  .scroll-cue {
-    position: absolute; bottom: 32px; right: 32px;
-    font-size: 10px; letter-spacing: .3em; text-transform: uppercase;
-    opacity: .7; color: white;
-    writing-mode: vertical-rl; transform: rotate(180deg);
-  }
-  @media (max-width: 720px) {
-    .scroll-cue { display: none; }
-    .hero-content { padding: 0 24px 50px; }
-    .nav { padding: 18px 24px; }
-  }
-
-  /* SECTIONS */
-  .feature-section {
-    display: grid; grid-template-columns: 1fr 1fr;
-    min-height: 80vh;
-    background: var(--bg);
-  }
-  @media (max-width: 900px) { .feature-section { grid-template-columns: 1fr; min-height: auto; } }
-  .feature-img {
-    background-size: cover; background-position: center;
-    min-height: 480px;
-  }
-  .feature-body {
-    padding: 80px 60px; display: flex; flex-direction: column; justify-content: center;
-    background: white;
-  }
-  .feature-section.reverse .feature-img { order: 2; }
-  @media (max-width: 900px) {
-    .feature-section.reverse .feature-img { order: -1; }
-    .feature-body { padding: 50px 32px; }
-  }
-  .section-eyebrow {
-    font-size: 11px; letter-spacing: .25em; text-transform: uppercase;
-    color: var(--ink-soft); font-weight: 500; margin-bottom: 16px;
-  }
-  .section-title {
-    font-size: clamp(32px, 4vw, 48px); line-height: 1.05; font-weight: 700;
-    letter-spacing: -.02em; margin-bottom: 22px;
-  }
-  .section-body {
-    font-size: 15px; color: var(--ink-soft); line-height: 1.8;
-    margin-bottom: 32px; max-width: 480px;
-  }
-  .section-btn {
-    display: inline-flex; align-items: center; gap: 12px;
-    background: var(--ink); color: white;
-    padding: 14px 28px; border-radius: 3px;
-    font-size: 12px; font-weight: 600; letter-spacing: .16em;
-    transition: all .2s; width: fit-content;
-  }
-  .section-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,.15); }
-  .section-btn::after { content: '→'; transition: transform .2s; }
-  .section-btn:hover::after { transform: translateX(4px); }
-  .section-btn.disabled {
-    background: #ccc; color: var(--ink-soft); cursor: not-allowed;
-  }
-  .section-btn.disabled:hover { transform: none; box-shadow: none; }
-
-  /* QUICK INFO */
-  .quick {
-    padding: 80px 32px; background: white; border-top: 1px solid var(--line);
-  }
-  .quick-wrap { max-width: 1100px; margin: 0 auto; }
-  .quick-eyebrow {
-    font-size: 11px; letter-spacing: .25em; text-transform: uppercase;
-    color: var(--ink-soft); font-weight: 500; margin-bottom: 12px;
-  }
-  .quick-title {
-    font-size: clamp(26px, 3vw, 36px); margin-bottom: 40px; font-weight: 700;
-  }
-  .quick-grid {
-    display: grid; grid-template-columns: 1fr; gap: 0;
-    border-top: 1px solid var(--line);
-  }
-  @media (min-width: 720px) { .quick-grid { grid-template-columns: repeat(3, 1fr); } }
-  .quick-item {
-    padding: 32px 28px; border-bottom: 1px solid var(--line);
-  }
-  @media (min-width: 720px) {
-    .quick-item { border-bottom: none; border-right: 1px solid var(--line); }
-    .quick-item:last-child { border-right: none; }
-  }
-  .quick-num {
-    font-family: 'Cormorant Garamond', serif; font-size: 13px; font-weight: 600;
-    letter-spacing: .15em; color: var(--ink-muted); margin-bottom: 16px;
-  }
-  .quick-item h3 { font-size: 18px; margin-bottom: 10px; font-weight: 600; }
-  .quick-item p { font-size: 13px; color: var(--ink-soft); line-height: 1.7; }
-  .quick-item strong { color: var(--ink); font-weight: 600; }
-  .quick-tel {
-    display: inline-block; font-family: 'Cormorant Garamond', serif;
-    font-size: 24px; font-weight: 700; color: var(--ink);
-    letter-spacing: -.01em; margin: 6px 0 10px;
-    padding: 6px 0; text-decoration: none;
-    transition: opacity .15s;
-  }
-  .quick-tel:hover { opacity: .65; }
-  .quick-tel-sm {
-    display: inline-block; font-family: 'Cormorant Garamond', serif;
-    font-size: 15px; font-weight: 700; color: var(--ink);
-    text-decoration: none; margin-right: 4px;
-    transition: opacity .15s;
-  }
-  .quick-tel-sm:hover { opacity: .65; }
-  .quick-item-call { background: #fafafa; }
-  @media (min-width: 720px) { .quick-item-call { background: transparent; } }
-  .wifi-box {
-    background: #f4f4f4; border-radius: 4px; padding: 12px 14px;
-    margin-top: 8px;
-  }
-  .wifi-row {
-    display: flex; align-items: center; gap: 10px;
-    padding: 4px 0; font-size: 13px;
-  }
-  .wifi-row + .wifi-row { border-top: 1px solid #e5e5e5; }
-  .wifi-label {
-    color: var(--ink-soft); font-size: 11px; letter-spacing: .1em;
-    text-transform: uppercase; min-width: 70px;
-  }
-  .wifi-val {
-    font-family: 'Cormorant Garamond', serif; font-weight: 700;
-    color: var(--ink); font-size: 15px; letter-spacing: .02em;
-  }
-  body.en .wifi-row .wifi-label.lang-jp,
-  body.en .wifi-row .wifi-label.lang-th,
-  body.th .wifi-row .wifi-label.lang-jp,
-  body.th .wifi-row .wifi-label.lang-en { display: none; }
-  body:not(.en):not(.th) .wifi-row .wifi-label.lang-en,
-  body:not(.en):not(.th) .wifi-row .wifi-label.lang-th { display: none; }
-  .contact-row {
-    display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px;
-  }
-  .contact-btn {
-    display: inline-flex; align-items: center; gap: 5px;
-    padding: 7px 12px; border-radius: 999px;
-    font-size: 12px; font-weight: 600; letter-spacing: .04em;
-    text-decoration: none; transition: opacity .15s;
-  }
-  .contact-btn:hover { opacity: .8; }
-  .contact-btn.line { background: #06c755; color: white; }
-  .contact-btn.whatsapp { background: #25d366; color: white; }
-  .contact-btn.tel { background: var(--ink); color: white; }
-  .contact-hours { font-size: 11px; color: var(--ink-muted); margin-top: 8px; letter-spacing: .04em; }
-
-  /* FOOTER */
-  footer {
-    background: var(--ink); color: rgba(255,255,255,.6);
-    padding: 80px 32px 40px;
-  }
-  .footer-wrap { max-width: 1100px; margin: 0 auto; }
-  .footer-top {
-    display: grid; grid-template-columns: 1fr; gap: 40px;
-    padding-bottom: 50px; border-bottom: 1px solid rgba(255,255,255,.1);
-  }
-  @media (min-width: 720px) { .footer-top { grid-template-columns: 1fr 2fr; } }
-  .footer-logo {
-    font-family: 'Cormorant Garamond', serif; font-weight: 700;
-    font-size: 15px; letter-spacing: .1em; color: white;
-    margin-bottom: 16px; display: block;
-  }
-  .footer-tagline { font-size: 13px; line-height: 1.8; }
-  .footer-links {
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px;
-  }
-  @media (min-width: 720px) { .footer-links { grid-template-columns: repeat(3, 1fr); } }
-  .footer-col h4 {
-    font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
-    color: white; font-weight: 600; margin-bottom: 16px;
-  }
-  .footer-col a, .footer-col p {
-    display: block; font-size: 13px; color: rgba(255,255,255,.6);
-    line-height: 1.8; margin-bottom: 6px; transition: color .15s;
-  }
-  .footer-col a:hover { color: white; }
-  .footer-bottom {
-    padding-top: 30px; text-align: center; font-size: 11px;
-    color: rgba(255,255,255,.4); letter-spacing: .1em;
-  }
-
-  /* Language toggle */
-  .lang-en, .lang-th { display: none; }
-  body.en .lang-jp, body.en .lang-th { display: none; }
-  body.en .lang-en { display: block; }
-  body.en span.lang-en, body.en .inline.lang-en { display: inline; }
-  body.en h1.lang-jp, body.en h2.lang-jp, body.en h3.lang-jp, body.en p.lang-jp, body.en div.lang-jp,
-  body.en h1.lang-th, body.en h2.lang-th, body.en h3.lang-th, body.en p.lang-th, body.en div.lang-th { display: none; }
-  body.th .lang-jp, body.th .lang-en { display: none; }
-  body.th .lang-th { display: block; }
-  body.th span.lang-th, body.th .inline.lang-th { display: inline; }
-  body.th h1.lang-jp, body.th h2.lang-jp, body.th h3.lang-jp, body.th p.lang-jp, body.th div.lang-jp,
-  body.th h1.lang-en, body.th h2.lang-en, body.th h3.lang-en, body.th p.lang-en, body.th div.lang-en { display: none; }
-</style>
-</head>
-<body>
-
-<nav class="nav" id="nav">
-  <a href="index.html" class="logo">旅籠丸八 HATAGO MARUHACHI</a>
-  <div class="nav-right">
-    <div class="lang-switch">
-      <button data-lang="jp" class="active">JP</button>
-      <span class="divider">/</span>
-      <button data-lang="en">EN</button>
-      <span class="divider">/</span>
-      <button data-lang="th">TH</button>
-    </div>
-    <a href="https://hakubastay.jp/maru8/?tripla_booking_widget_open=search" target="_blank" class="book-btn">BOOK NOW</a>
-  </div>
-</nav>
-
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-content">
-    <div class="hero-eyebrow">白馬旅籠丸八 HATAGO MARUHACHI</div>
-    <h1 class="hero-title lang-jp">ようこそ、<br>白馬へ。</h1>
-    <h1 class="hero-title lang-en">Welcome to<br>Hakuba.</h1>
-    <h1 class="hero-title lang-th">ยินดีต้อนรับสู่<br>ฮาคุบะ</h1>
-    <p class="hero-sub lang-jp">白馬旅籠丸八 は、岩岳「せせらぎの里」新田にたたずむ古民家リゾート。江戸時代から守り継がれた古民家と、桜並木沿いの「離れ」で、愛犬とともに我が家のように寛げるお宿です。</p>
-    <p class="hero-sub lang-en">Hatago Maruhachi is a renovated kominka (folk-house) retreat in Niida — the Iwatake "village of murmuring streams." Stay with your dog in heritage houses and detached suites along a cherry-tree lane, as relaxed as a second home.</p>
-    <p class="hero-sub lang-th">ฮาตาโกะ มารุฮาจิ คือรีสอร์ทบ้านโบราณสไตล์ญี่ปุ่น (โคมินกะ) ที่ตั้งอยู่ในหมู่บ้านนีอิดะ "หมู่บ้านแห่งลำธาร" บริเวณอิวาตาเกะ พักผ่อนกับสุนัขที่รักในบ้านโบราณและห้องพักส่วนตัวริมทางเดินซากุระ ราวกับเป็นบ้านหลังที่สองของคุณ</p>
-  </div>
-  <div class="scroll-cue">SCROLL</div>
-</div>
-
-<!-- YOUR STAY -->
-<section class="feature-section">
-  <div class="feature-img" style="background-image:url('images/mr-premium.jpg')"></div>
-  <div class="feature-body">
-    <div class="section-eyebrow">01 — Your Stay</div>
-    <h2 class="section-title lang-jp">宿泊のご案内</h2>
-    <h2 class="section-title lang-en">Your Stay</h2>
-    <h2 class="section-title lang-th">ข้อมูลการเข้าพัก</h2>
-    <p class="section-body lang-jp">チェックイン／アウト、Wi-Fi、アクセス、お部屋・アメニティ、ミネラルミスト岩盤浴やラウンジなど、旅籠丸八 での滞在に必要な情報をまとめています。</p>
-    <p class="section-body lang-en">Everything you need for your stay — check-in/out, Wi-Fi, access, rooms, amenities, the mineral mist stone spa, lounge and more.</p>
-    <p class="section-body lang-th">ข้อมูลทั้งหมดที่จำเป็นสำหรับการเข้าพัก — เช็คอิน/เช็คเอาต์ Wi-Fi การเดินทาง ห้องพัก สิ่งอำนวยความสะดวก มิเนอรัลมิสต์สปาหิน เลานจ์ และอื่นๆ</p>
-    <a href="stay.html" class="section-btn lang-jp">詳しく見る</a>
-    <a href="stay-en.html" class="section-btn lang-en">Learn More</a>
-    <a href="stay-th.html" class="section-btn lang-th">ดูรายละเอียด</a>
-  </div>
-</section>
-
-<!-- EXPLORE HAKUBA -->
-<section class="feature-section reverse">
-  <div class="feature-img" style="background-image:url('images/iwatake-skywalk.jpg')"></div>
-  <div class="feature-body">
-    <div class="section-eyebrow">02 — Explore</div>
-    <h2 class="section-title lang-jp">白馬を、楽しむ。</h2>
-    <h2 class="section-title lang-en">Explore Hakuba.</h2>
-    <h2 class="section-title lang-th">สัมผัสฮาคุบะ</h2>
-    <p class="section-body lang-jp">スポット、夏冬のアクティビティ、温泉、飲食、交通、E-bike まで。白馬を深く楽しむためのスタッフ厳選ローカルガイド。</p>
-    <p class="section-body lang-en">Spots, summer & winter activities, onsen, food, transport and e-bikes — your local guide curated by our staff.</p>
-    <p class="section-body lang-th">สถานที่ท่องเที่ยว กิจกรรมฤดูร้อน/ฤดูหนาว ออนเซ็น ร้านอาหาร การเดินทาง และ E-bike — คู่มือท้องถิ่นที่คัดสรรโดยทีมงานของเรา</p>
-    <a href="hakuba.html" class="section-btn lang-jp">ガイドを見る</a>
-    <a href="hakuba-en.html" class="section-btn lang-en">Open Guide</a>
-    <a href="hakuba-th.html" class="section-btn lang-th">เปิดคู่มือ</a>
-  </div>
-</section>
-
-<!-- QUICK INFO -->
-<section class="quick">
-  <div class="quick-wrap">
-    <div class="quick-eyebrow">Quick Info</div>
-    <h2 class="quick-title lang-jp">困ったときは</h2>
-    <h2 class="quick-title lang-en">In case you need help</h2>
-    <h2 class="quick-title lang-th">เมื่อต้องการความช่วยเหลือ</h2>
-
-    <div class="quick-grid">
-      <div class="quick-item">
-        <div class="quick-num">01 Wi-Fi</div>
-        <h3 class="lang-jp">館内 Wi-Fi</h3>
-        <h3 class="lang-en">House Wi-Fi</h3>
-        <h3 class="lang-th">Wi-Fi ภายในที่พัก</h3>
-        <div class="wifi-box">
-          <div class="wifi-row"><span class="wifi-label lang-jp">壱番館</span><span class="wifi-label lang-en">No.1</span><span class="wifi-label lang-th">อาคาร 1</span><span class="wifi-val" style="font-size:12px; letter-spacing:0">ID maruhachi-1st ／ PW maruhachi0001</span></div>
-          <div class="wifi-row"><span class="wifi-label lang-jp">弐番館</span><span class="wifi-label lang-en">No.2</span><span class="wifi-label lang-th">อาคาร 2</span><span class="wifi-val" style="font-size:12px; letter-spacing:0">ID Maruhachi ／ PW maruhachi0003</span></div>
-          <div class="wifi-row"><span class="wifi-label lang-jp">参番館</span><span class="wifi-label lang-en">No.3</span><span class="wifi-label lang-th">อาคาร 3</span><span class="wifi-val" style="font-size:12px; letter-spacing:0">ID maruhachi-3rd ／ PW maruhachi0007</span></div>
-        </div>
-        <p style="font-size:11px; color:var(--ink-muted); margin-top:8px"><span class="lang-jp">※ 左が ID（SSID）、右が パスワード。お部屋の館をお選びください。</span><span class="lang-en">※ Left = ID (SSID), right = password. Choose your building.</span><span class="lang-th">※ ซ้าย = ID (SSID), ขวา = รหัสผ่าน กรุณาเลือกอาคารที่คุณเข้าพัก</span></p>
-      </div>
-      <div class="quick-item quick-item-call">
-        <div class="quick-num">02 Front Desk</div>
-        <h3 class="lang-jp">フロントへのご連絡</h3>
-        <h3 class="lang-en">Contact Front Desk</h3>
-        <h3 class="lang-th">ติดต่อฟรอนต์เดสก์</h3>
-        <a href="tel:05017211082" class="quick-tel">📞 050-1721-1082</a>
-        <div class="contact-row">
-          <a href="https://lin.ee/Y1mclmE" target="_blank" rel="noopener" class="contact-btn line">LINE</a>
-          <a href="https://wa.me/message/5XTDOKSLQKDHH1" target="_blank" rel="noopener" class="contact-btn whatsapp">WhatsApp</a>
-          <a href="mailto:hakuba_iwatake@fika.tokyo" class="contact-btn tel">✉️ hakuba_iwatake@fika.tokyo</a>
-        </div>
-        <p class="contact-hours lang-jp">📱 受付時間：10:00〜19:00</p>
-        <p class="contact-hours lang-en">📱 Hours: 10:00–19:00</p>
-        <p class="contact-hours lang-th">📱 เวลาทำการ: 10:00–19:00</p>
-      </div>
-      <div class="quick-item">
-        <div class="quick-num">03 Emergency</div>
-        <h3 class="lang-jp">緊急時 / Emergency</h3>
-        <h3 class="lang-en">Emergency</h3>
-        <h3 class="lang-th">กรณีฉุกเฉิน</h3>
-        <p class="lang-jp"><strong>🚑 119</strong> 救急車・火事<br><strong>🚓 110</strong> 警察</p>
-        <p class="lang-en"><strong>🚑 119</strong> Ambulance & Fire<br><strong>🚓 110</strong> Police</p>
-        <p class="lang-th"><strong>🚑 119</strong> รถพยาบาล / เพลิงไหม้<br><strong>🚓 110</strong> ตำรวจ</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="footer-wrap">
-    <div class="footer-top">
-      <div>
-        <a href="index.html" class="footer-logo">旅籠丸八 HATAGO MARUHACHI</a>
-        <p class="footer-tagline">Travel Guide<br>by 白馬旅籠丸八 HATAGO MARUHACHI</p>
-      </div>
-      <div class="footer-links">
-        <div class="footer-col">
-          <h4>This Guide</h4>
-          <a href="index.html">Welcome</a>
-          <a href="hakuba.html">Explore Hakuba</a>
-          <a href="green-season.html">Green Season Guide</a>
-          <a href="stay.html">Your Stay</a>
-        </div>
-        <div class="footer-col">
-          <h4>旅籠丸八</h4>
-          <a href="https://hakubastay.jp/maru8/" target="_blank">Official Site</a>
-          <a href="https://hakubastay.jp/maru8/?tripla_booking_widget_open=search" target="_blank">Book Now</a>
-          <a href="https://www.instagram.com/shouyamaruhachi/" target="_blank">Instagram</a>
-          <a href="mailto:hakuba_iwatake@fika.tokyo">Contact</a>
-        </div>
-        <div class="footer-col">
-          <h4>Group</h4>
-          <a href="https://hakubastay.jp/square8/" target="_blank">Square8</a>
-          <a href="https://hakubastay.jp/maru8/" target="_blank">白馬旅籠丸八</a>
-          <a href="https://fika.tokyo/" target="_blank">FIKA</a>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom">© 旅籠丸八 HATAGO MARUHACHI — 長野県北安曇郡白馬村北城10816</div>
-  </div>
-</footer>
-
-<script>
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 80);
-  });
-  document.querySelectorAll('.lang-switch button').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.lang-switch button').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      document.body.classList.remove('en', 'th');
-      if (btn.dataset.lang === 'en') document.body.classList.add('en');
-      else if (btn.dataset.lang === 'th') document.body.classList.add('th');
-    });
-  });
-</script>
-
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>移転しました / Moved | 白馬旅籠丸八 HATAGO MARUHACHI</title>
+    <link rel="canonical" href="https://fika-marketing-maruhachi-hakuba-guide.fika-apps.workers.dev/index.html" />
+    <meta name="robots" content="noindex, follow" />
+    <meta http-equiv="refresh" content="0; url=https://fika-marketing-maruhachi-hakuba-guide.fika-apps.workers.dev/index.html" />
+    <style>
+    :root { color-scheme: light; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 24px;
+      background: #f4f2ee; color: #23201c;
+      font-family: "Noto Sans JP", "Noto Sans Thai", system-ui, -apple-system,
+        BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.8;
+    }
+    main {
+      width: min(100%, 560px); padding: clamp(28px, 6vw, 48px); text-align: center;
+      background: #fff; border: 1px solid #e2ded7; border-radius: 20px;
+      box-shadow: 0 18px 50px rgb(0 0 0 / 7%);
+    }
+    .facility { margin: 0 0 20px; font-size: 12px; letter-spacing: .18em; color: #8a8175; font-weight: 700; }
+    h1 { margin: 0 0 20px; font-size: clamp(20px, 4.5vw, 26px); line-height: 1.5; letter-spacing: -.01em; }
+    p { margin: 0 0 8px; font-size: 15px; color: #57514a; }
+    p:lang(th) { font-size: 15px; }
+    .button {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 52px; margin-top: 28px; padding: 0 26px; border-radius: 999px;
+      background: #23201c; color: #fff; font-weight: 700; text-decoration: none;
+    }
+    .button:hover { background: #3d382f; }
+    .button:focus-visible { outline: 3px solid #23201c; outline-offset: 4px; }
+    .url { margin-top: 18px; font-size: 12px; color: #8a8175; word-break: break-all; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="facility">白馬旅籠丸八 HATAGO MARUHACHI</p>
+      <h1>ガイドサイトは新しいURLへ移転しました</h1>
+      <p lang="ja">自動で新しいページへ移動します。移動しない場合は下のボタンを押してください。</p>
+      <p lang="en">This guide has moved. You will be redirected automatically.</p>
+      <p lang="th">คู่มือนี้ได้ย้ายไปยัง URL ใหม่แล้ว ระบบจะพาคุณไปยังหน้าใหม่โดยอัตโนมัติ</p>
+      <a class="button" href="https://fika-marketing-maruhachi-hakuba-guide.fika-apps.workers.dev/index.html">
+        <span>新しいガイドを開く / Open the new guide</span>
+        <span aria-hidden="true">→</span>
+      </a>
+      <p class="url">https://fika-marketing-maruhachi-hakuba-guide.fika-apps.workers.dev/index.html</p>
+    </main>
+    <script>
+      window.location.replace("https://fika-marketing-maruhachi-hakuba-guide.fika-apps.workers.dev/index.html");
+    </script>
+  </body>
 </html>
